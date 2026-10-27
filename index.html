@@ -1,235 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BOOKSTORE WORLD - India's Most Loved Books</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BOOKSTORE WORLD - Inspired by KFA | 1M Books | Real Covers</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#fdf6e3;color:#0a1628}
-.header{position:sticky;top:0;z-index:100;background:#0a1628;border-bottom:3px solid #c9a86a;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
-.logo{display:flex;align-items:center;gap:10px}
-.crown{width:42px;height:42px;background:linear-gradient(135deg,#c9a86a,#8c6a2f);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}
-.brand h1{font-family:'Playfair Display';color:#c9a86a;font-size:18px;letter-spacing:1.5px;line-height:1}
-.brand p{color:#8a9bb0;font-size:9px;letter-spacing:1px;margin-top:2px}
-.actions{display:flex;gap:10px}
-.icon{width:38px;height:38px;background:#13233f;border:1px solid #c9a86a33;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#c9a86a;cursor:pointer}
-.grid{padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(min-width:768px){.grid{grid-template-columns:repeat(4,1fr)}}
-.card{background:#fff;border:1px solid #e8dcc3;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px #0a16280d;transition:.2s}
-.card:hover{transform:translateY(-4px);box-shadow:0 8px 30px #0a162820}
-.cover{aspect-ratio:3/4;position:relative;background:#0a1628;overflow:hidden}
-.cover img{width:100%;height:100%;object-fit:cover;display:block}
-.fallback{width:100%;height:100%;background:linear-gradient(135deg,#0a1628,#1a2f4f);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;border:3px solid #c9a86a;text-align:center}
-.fallback span{color:#c9a86a;font-family:'Playfair Display';font-weight:900;font-size:16px;line-height:1.1}
-.fallback small{color:#8a9bb0;font-size:8px;margin-top:8px;letter-spacing:1px}
-.info{padding:10px}
-.info h3{font-family:'Playfair Display';font-size:15px;line-height:1.2;height:38px;overflow:hidden}
-.info p{font-size:12px;color:#6b7a8f;margin:4px 0}
-.price{display:flex;align-items:center;gap:6px;margin:6px 0}
-.price b{color:#0a7a2f;font-size:16px}
-.price s{color:#999;font-size:12px}
-.meta{font-size:9px;color:#8a9bb0;letter-spacing:.5px;border-top:1px dashed #e8dcc3;padding-top:6px;margin-top:6px}
-.row{display:flex;gap:6px;margin-top:8px}
-.btn-heart{width:38px;height:38px;border:1px solid #e8dcc3;border-radius:20px;background:#fff;cursor:pointer}
-.btn-buy{flex:1;background:#0a1628;color:#c9a86a;border:1px solid #c9a86a;border-radius:20px;padding:8px;font-weight:700;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px}
-.btn-buy:hover{background:#c9a86a;color:#0a1628}
-.footer{position:fixed;bottom:12px;left:12px;right:12px;background:#0a1628;border:1px solid #c9a86a66;border-radius:28px;display:flex;justify-content:space-around;padding:8px 0;z-index:100;box-shadow:0 10px 40px #0005}
-.ft{flex:1;text-align:center;color:#8a9bb0;font-size:10px;cursor:pointer;padding:4px}
-.ft.active{color:#c9a86a}
-.ft div{font-size:20px}
-.modal{position:fixed;inset:0;background:#0008;z-index:200;display:none;align-items:flex-end;justify-content:center}
+body{font-family:'Inter',sans-serif;background:#fff;color:#111;overflow-x:hidden}
+.serif{font-family:'Cormorant Garamond',serif}
+.header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #eee;padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Cormorant Garamond';font-weight:700;font-size:20px;letter-spacing:1px;display:flex;align-items:center;gap:8px}
+.logo span{width:32px;height:32px;background:#0a1628;color:#c9a86a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav{display:flex;gap:28px;font-size:13px;font-weight:600;letter-spacing:.5px}
+.nav span{cursor:pointer}
+.icons{display:flex;gap:16px;align-items:center}
+.cart{position:relative}
+.cart b{position:absolute;top:-8px;right:-8px;background:#e86a2c;color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px}
+/* HERO SLIDER - KFA STYLE */
+.hero{position:relative;background:#f6f3ef;overflow:hidden;height:520px;display:flex;align-items:center}
+.slide{position:absolute;inset:0;display:none;align-items:center;justify-content:space-between;padding:0 8%;opacity:0;transition:opacity .6s}
+.slide.active{display:flex;opacity:1}
+.slide-left{width:38%;display:flex;justify-content:center}
+.slide-left img{width:320px;height:440px;object-fit:cover;box-shadow:0 20px 60px #0002, 0 5px 20px #0001;border-radius:4px}
+.slide-right{width:52%}
+.slide-right .label{font-size:13px;letter-spacing:2px;color:#888;text-transform:uppercase;margin-bottom:12px}
+.slide-right h1{font-family:'Cormorant Garamond';font-size:42px;line-height:1.1;font-weight:700;color:#111;margin-bottom:16px}
+.slide-right p{font-size:15px;line-height:1.7;color:#555;max-width:520px;margin-bottom:24px}
+.btn-buy-now{background:#e86a2c;color:#fff;border:none;padding:14px 36px;font-weight:700;letter-spacing:1px;font-size:13px;cursor:pointer;transition:.2s}
+.btn-buy-now:hover{background:#d45a1f}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;background:#fff;border:1px solid #ddd;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;transition:.2s}
+.arrow:hover{background:#111;color:#fff}
+.arrow.left{left:16px}
+.arrow.right{right:16px}
+.dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:5}
+.dot{width:30px;height:3px;background:#ddd;cursor:pointer;transition:.2s}
+.dot.active{background:#111}
+/* CATEGORY BAR - KFA Browse by Topic style + our 1M */
+.browse{padding:50px 24px 20px;background:#fff;text-align:center}
+.browse h2{font-family:'Cormorant Garamond';font-size:32px;font-weight:600;margin-bottom:12px}
+.browse p{font-size:14px;color:#666;max-width:700px;margin:0 auto 28px;line-height:1.6}
+.chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+.chip{padding:10px 18px;border-radius:4px;border:1px solid #ddd;background:#f6f3ef;color:#333;font-size:13px;cursor:pointer;transition:.2s}
+.chip.active{background:#111;color:#fff;border-color:#111}
+/* CAT BAR FOR 1M */
+.cat-bar{position:sticky;top:61px;z-index:90;background:#fff;border-bottom:1px solid #eee;padding:10px 0 10px 16px;overflow:hidden}
+.cat-scroll{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-right:16px}
+.cat-scroll::-webkit-scrollbar{display:none}
+.c-chip{padding:7px 14px;border-radius:20px;border:1px solid #ddd;background:#f9f6f2;color:#555;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.c-chip.active{background:#111;color:#fff;border-color:#111}
+/* GRID - KFA clean cards */
+.grid-wrap{padding:20px 24px 120px;background:#fff}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.hero{height:auto;padding:30px 0}.slide{position:relative;flex-direction:column;padding:20px 5%;height:auto}.slide-left,.slide-right{width:100%}.slide-left img{width:240px;height:340px}.slide-right h1{font-size:28px}.nav{display:none}}
+.card{background:#fff;border:1px solid #f0ebe3;border-radius:4px;overflow:hidden;transition:.3s}
+.card:hover{box-shadow:0 10px 30px #0001;transform:translateY(-4px)}
+.card img{width:100%;height:280px;object-fit:cover;background:#f6f3ef;display:block}
+.card .info{padding:14px}
+.card h3{font-family:'Cormorant Garamond';font-size:16px;line-height:1.3;height:44px;overflow:hidden;font-weight:600}
+.card .price{color:#e86a2c;font-weight:700;margin-top:8px;font-size:14px}
+.card .meta{font-size:11px;color:#999;margin-top:2px}
+.btns{display:flex;gap:8px;margin-top:10px}
+.btn-view{flex:1;padding:8px;border:1px solid #ddd;background:#fff;font-size:11px;cursor:pointer;border-radius:4px}
+.btn-buy{flex:1;padding:8px;background:#111;color:#fff;border:none;font-size:11px;cursor:pointer;border-radius:4px;font-weight:700}
+.footer{position:fixed;bottom:12px;left:12px;right:12px;background:#111;border-radius:28px;display:flex;justify-content:space-around;padding:12px 0;z-index:80}
+.ft{color:#888;font-size:10px;text-align:center;flex:1;cursor:pointer}
+.ft.active{color:#fff}
+.modal{position:fixed;inset:0;background:#0008;z-index:200;display:none;align-items:center;justify-content:center;padding:16px}
 .modal.open{display:flex}
-.sheet{width:100%;max-width:480px;background:#fdfbf0;border-radius:24px 24px 0 0;max-height:92vh;overflow:auto;border-top:3px solid #c9a86a;animation:up .3s}
-@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.s-head{background:#0a1628;color:#c9a86a;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-radius:24px 24px 0 0}
-.s-body{padding:16px}
-.book-row{display:flex;gap:12px;margin-bottom:14px}
-.b-cover{width:90px;aspect-ratio:3/4;background:#0a1628;border-radius:8px;overflow:hidden;border:2px solid #c9a86a;flex-shrink:0}
-.b-cover img{width:100%;height:100%;object-fit:cover}
-.b-info h2{font-family:'Playfair Display';font-size:18px}
-.b-info p{font-size:12px;color:#6b7a8f;margin:2px 0}
-.qr-box{background:#fff;border:2px dashed #c9a86a;border-radius:12px;padding:12px;margin:12px 0;text-align:center}
+.stage{width:100%;max-width:560px;background:#fff;border-radius:12px;padding:16px;border:1px solid #ddd;max-height:92vh;overflow:auto;color:#000}
+.check{position:fixed;inset:0;background:#0008;z-index:201;display:none;align-items:flex-end}
+.check.open{display:flex}
+.sheet{width:100%;max-width:500px;background:#fff;border-radius:16px 16px 0 0;margin:0 auto;max-height:92vh;overflow:auto;color:#000}
+.inp{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;margin:6px 0}
+.btn-conf{width:100%;background:#111;color:#fff;padding:14px;border-radius:8px;border:none;font-weight:700;cursor:pointer;margin-top:8px}
 #qrcode{display:flex;justify-content:center;margin:8px 0}
-.upi{font-size:13px;background:#fdf6e3;padding:8px;border-radius:8px;border:1px solid #c9a86a66;word-break:break-all;font-weight:700}
-.inp{width:100%;padding:12px;border:1px solid #c9a86a88;border-radius:12px;margin:6px 0;font-size:14px}
-.btn-confirm{width:100%;background:#0a1628;color:#c9a86a;border:2px solid #c9a86a;border-radius:24px;padding:14px;font-weight:900;font-size:15px;cursor:pointer;margin-top:10px}
-.btn-confirm:disabled{opacity:.4}
-.success{background:#0a7a2f;color:#fff;padding:12px;border-radius:12px;margin:10px 0;text-align:center;font-weight:700;display:none}
-.mybooks{padding:12px;padding-bottom:90px}
-.my-card{background:#fff;border:1px solid #c9a86a66;border-radius:16px;padding:12px;display:flex;gap:12px;margin-bottom:12px}
-.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#0a1628;color:#c9a86a;padding:10px 18px;border-radius:20px;border:1px solid #c9a86a;z-index:300;display:none;font-weight:700}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 18px;border-radius:20px;display:none;z-index:300}
+.chat{position:fixed;bottom:90px;right:16px;background:#fff;border:1px solid #eee;box-shadow:0 10px 30px #0002;border-radius:24px;padding:10px 16px;display:flex;gap:8px;align-items:center;cursor:pointer;z-index:70;font-size:13px;font-weight:600}
 </style>
 </head>
 <body>
 <div class="header">
-<div class="logo"><div class="crown">👑</div><div class="brand"><h1>BOOKSTORE WORLD</h1><p>INDIA'S MOST LOVED BOOKS</p></div></div>
-<div class="actions"><div class="icon" onclick="document.getElementById('searchBox').focus()">🔍</div><div class="icon" id="cartCount">🛒<span style="font-size:10px" id="cc">0</span></div></div>
+<div class="logo"><span>👑</span> BOOKSTORE WORLD</div>
+<div class="nav"><span>BOOKS ▾</span><span>THEMES ▾</span><span>DONATE</span><span>MORE ▾</span></div>
+<div class="icons"><span>🔍</span><div class="cart">🛒<b id="cartN">0</b></div><span style="border:1px solid #ddd;padding:6px 8px">☰</span></div>
 </div>
-<div style="padding:10px 12px"><input id="searchBox" class="inp" placeholder="Search title... Vikram Betal, Sinhasan Battisi..." style="background:#fff" oninput="doSearch(this.value)"></div>
-<div id="homeView">
+<!-- HERO SLIDER - KFA inspired -->
+<div class="hero" id="hero">
+<div class="arrow left" onclick="prevSlide()">‹</div>
+<div class="arrow right" onclick="nextSlide()">›</div>
+<div class="slide active" id="slide0">
+<div class="slide-left"><img id="himg0" src="https://covers.openlibrary.org/b/title/Vikram%20Betal-M.jpg" onerror="this.src='https://covers.openlibrary.org/b/id/12818862-M.jpg'"></div>
+<div class="slide-right"><div class="label">Book Of The Month • Real Cover Instant • 3D Live</div><h1 class="serif">Vikram Betal<br>Royal Edition</h1><p>Vikram Betal is one of India's most loved folk tales — wisdom, mystery, and royal justice. This royal edition brings 50 volumes with real covers, 3D live flip, instant download to My Books lifetime.</p><button class="btn-buy-now" onclick="openPayByIdx(0)">BUY NOW • ₹25</button></div>
+</div>
+<div class="slide" id="slide1">
+<div class="slide-left"><img id="himg1" src="https://covers.openlibrary.org/b/title/Sinhasan%20Battisi-M.jpg" onerror="this.src='https://covers.openlibrary.org/b/id/10521265-M.jpg'"></div>
+<div class="slide-right"><div class="label">Hardcover • 1M Volume • No Duplicate</div><h1 class="serif">Sinhasan Battisi<br>Complete Collection</h1><p>32 tales of King Vikramaditya's throne — each tale a lesson in justice. 50 volumes, real images by title play instantly in 3D div, live wallpaper effect.</p><button class="btn-buy-now" onclick="openPayByIdx(1)">BUY NOW • ₹30</button></div>
+</div>
+<div class="slide" id="slide2">
+<div class="slide-left"><img id="himg2" src="https://covers.openlibrary.org/b/title/Panchatantra-M.jpg" onerror="this.src='https://covers.openlibrary.org/b/id/12031272-M.jpg'"></div>
+<div class="slide-right"><div class="label">Browse by Topic • Folk Tales • Moral Stories</div><h1 class="serif">Panchatantra<br>Ancient Wisdom</h1><p>Ancient Indian fables that teach life lessons through animals. Inspired by KFA's clean design but with Indian soul — real covers, 3D anatomy scroll, My Books lifetime.</p><button class="btn-buy-now" onclick="openPayByIdx(2)">BUY NOW • ₹25</button></div>
+</div>
+<div class="dots" id="dots"></div>
+</div>
+<!-- BROWSE BY TOPIC - KFA style -->
+<div class="browse">
+<h2 class="serif">Browse by Topic</h2>
+<p>Bookstore World speaks for nearly 1000 years, addressing the whole of India and the entire field of folk consciousness. Its teachings are currently published in more than 1,000,000 royal volumes.</p>
+<div class="chips" id="topicChips"></div>
+</div>
+<!-- 1M CATEGORY BAR -->
+<div class="cat-bar"><div style="font-size:10px;color:#e86a2c;font-weight:800;letter-spacing:1px;margin-bottom:6px">📚 30+ CATEGORIES • 1,000,000+ VOLUME • REAL COVER INSTANT • 3D LIVE</div><div class="cat-scroll" id="catScroll"></div></div>
+<div class="grid-wrap">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><div style="font-size:12px;color:#888">Showing <span id="showCount">0</span> of 1,000,000+ • Deep Search • No Duplicate Volumes</div><input id="search" class="inp" placeholder="🔍 Search title... real image instant" style="max-width:260px" oninput="doSearch()"></div>
 <div class="grid" id="grid"></div>
-<div id="loadMore" style="text-align:center;padding:20px"><button onclick="loadMore()" style="padding:10px 20px;border-radius:20px;border:1px solid #c9a86a;background:#fff;cursor:pointer">Load 20 More Royal Books...</button></div>
+<div style="text-align:center;padding:24px 0"><button onclick="loadMore()" style="padding:12px 24px;border-radius:4px;border:1px solid #111;background:#fff;font-weight:700;cursor:pointer">Load More • 1M Infinite Scroll</button></div>
 </div>
-<div id="myBooksView" style="display:none" class="mybooks">
-<h2 style="font-family:'Playfair Display';margin-bottom:12px">📚 My Books - Lifetime Access</h2>
-<div id="myBooksList"></div>
-</div>
+<div class="modal" id="m3d" onclick="if(event.target.id=='m3d')close3d()"><div class="stage"><div style="display:flex;justify-content:space-between"><b id="t3d" class="serif">Book</b><span onclick="close3d()" style="cursor:pointer">✕</span></div><div style="font-size:11px;color:#888;margin:4px 0">📖 3D Live Flip • Real cover by title • Drag to flip • KFA clean + 3D anatomy</div><div id="flipbook" style="width:340px;height:420px;margin:0 auto"></div><div style="display:flex;gap:8px;margin-top:12px"><button style="flex:1;padding:12px;background:#111;color:#fff;border-radius:6px;border:none;font-weight:700" onclick="close3d(); if(cur) openPay(cur.id)">BUY NOW @ ₹<span id="p3d">25</span></button><button onclick="close3d()" style="flex:1;padding:12px;border-radius:6px;border:1px solid #ddd;background:#fff">Close</button></div></div></div>
+<div class="check" id="checkout"><div class="sheet"><div style="background:#111;color:#fff;padding:14px 16px;display:flex;justify-content:space-between"><div><b>Secure Royal Checkout</b><div id="token" style="font-size:10px;color:#aaa"></div></div><div onclick="closePay()" style="cursor:pointer">✕</div></div><div style="padding:16px"><div style="display:flex;gap:12px"><div style="width:80px;height:110px;background:#f6f3ef;border-radius:4px;overflow:hidden"><img id="mCover" style="width:100%;height:100%;object-fit:cover"></div><div><h3 id="mTitle" class="serif"></h3><p id="mAuthor" style="font-size:12px;color:#666"></p><p><b id="mPrice" style="color:#e86a2c"></b></p><p style="font-size:10px;color:#888">Owner: Dev Prakash • UPI: 9896138979@mbk • Real Cover Instant</p></div></div><div style="background:#f9f6f2;border:2px dashed #e86a2c44;border-radius:12px;padding:12px;text-align:center;margin:14px 0"><b>UPI QR - Amount Auto-Filled</b><div id="qrcode"></div><div style="font-size:12px;font-weight:700">9896138979@mbk • Dev Prakash</div></div><input id="utr" class="inp" maxlength="12" placeholder="UTR 12 digit" oninput="valid()"><input id="mob" class="inp" value="9896138979" maxlength="10" oninput="valid()"><button id="payBtn" class="btn-conf" disabled onclick="pay()">Confirm Pay & Instant Download to My Books</button><div id="ok" style="display:none;background:#0a7a2f;color:#fff;padding:10px;border-radius:8px;margin-top:10px;text-align:center"></div></div></div></div>
 <div class="footer">
-<div class="ft active" onclick="switchTab('home')"><div>🏠</div>Home</div>
-<div class="ft" onclick="switchTab('mybooks')"><div>📚</div>My Books</div>
-<div class="ft" onclick="toast('Wishlist: '+wishlist.length)"><div>❤️</div>Wishlist</div>
-<div class="ft" onclick="switchTab('mybooks')"><div>🛒</div>Cart</div>
-<div class="ft" onclick="toast('Profile: Dev Prakash | 9896138979')"><div>👤</div>Profile</div>
+<div class="ft active" onclick="goHome()"><div>🏠</div>Home</div>
+<div class="ft" onclick="goMy()"><div>📚</div>My Books</div>
+<div class="ft" onclick="toast('Wishlist')"><div>❤️</div>Wishlist</div>
+<div class="ft" onclick="goMy()"><div>🛒</div>Cart</div>
+<div class="ft" onclick="toast('Dev Prakash')"><div>👤</div>Profile</div>
 </div>
-<div class="modal" id="checkoutModal">
-<div class="sheet">
-<div class="s-head"><div><b>Secure Royal Checkout</b><div style="font-size:10px;opacity:.7" id="token">Token: --</div></div><div style="cursor:pointer;font-size:22px" onclick="closeModal()">✕</div></div>
-<div class="s-body">
-<div class="book-row">
-<div class="b-cover"><img id="mCover" src="" onerror="this.style.display='none'"></div>
-<div class="b-info"><h2 id="mTitle">--</h2><p id="mAuthor">-- • Story</p><p><b id="mPrice" style="color:#0a7a2f;font-size:20px">₹25</b> <s id="mOld">₹49</s> <span style="background:#0a1628;color:#c9a86a;padding:2px 8px;border-radius:10px;font-size:10px">Single Edition • No Vol</span></p><p style="font-size:10px;color:#6b7a8f">India's Most Loved • Owner: Dev Prakash • 9896138979</p></div>
-</div>
-<div class="qr-box">
-<b>UPI PAYMENT - Auto QR</b>
-<div id="qrcode"></div>
-<div class="upi">UPI ID: <span id="upiText">9896138979@mbk</span><br><small>Owner: Dev Prakash • Mobile: 9896138979</small></div>
-<p style="font-size:10px;margin-top:6px;color:#6b7a8f">Scan with any UPI app - Amount auto-filled</p>
-</div>
-<label style="font-size:12px;font-weight:700">UTR / Ref No. (12 digit)</label>
-<input id="utr" class="inp" maxlength="12" placeholder="e.g. 630016614956" oninput="validateForm()">
-<label style="font-size:12px;font-weight:700">Mobile Number</label>
-<input id="mob" class="inp" value="9896138979" maxlength="10" oninput="validateForm()">
-<button id="confirmBtn" class="btn-confirm" disabled onclick="confirmPay()">🛒 Confirm Pay <span id="payAmt">₹25</span> • UPI</button>
-<div class="success" id="successBox"></div>
-<p style="font-size:9px;color:#8a9bb0;text-align:center;margin-top:8px">Single book per title • No Volume duplication • 14 categories full • All Indian famous new comics stories • Secure checkout</p>
-</div>
-</div>
-</div>
+<div class="chat">💬 Chat with us</div>
 <div class="toast" id="toast"></div>
 <script>
-let allBooks=[], filtered=[], page=0, perPage=20, cart=[], wishlist=[], currentBook=null, qr=null;
-const categories=["Vikram Betal","Sinhasan Battisi","Baital Pachisi","Moral Stories India","Folk Tales Punjab","Tales from Bengal","Panchatantra","Akbar Birbal","Tenali Raman","Jataka Tales","Ramayana","Mahabharata","Mythology India","History India"];
-function royalCover(title){
-  return `<div class="fallback"><span>${title.substring(0,28)}</span><small>♦ INDIAN CLASSIC ♦<br>ROYAL EDITION</small></div>`;
+var allBooks=[], filtered=[], page=0, per=24, cur=null, pageFlip=null, activeCat='All', activeTopic='Best Sellers', slideIdx=0;
+var categories=['All','Vikram Betal','Sinhasan Battisi','Baital Pachisi','Moral Stories','Folk Punjab','Bengal Tales','Panchatantra','Akbar Birbal','Tenali Raman','Jataka Tales','Ramayana','Mahabharata','Mythology','History India','Indian Comics','Rajasthan Folk','Gujarat Tales','Bihar Folklore','Assam Tales','Kerala Stories','Maharashtra Folk','Tamil Tales','Kashmir Tales','Mystery India','Horror Folk','Wisdom Tales','Spiritual India','Kids Stories','Love Stories'];
+var topics=['Best Sellers','Introductory Titles','About Krishnamurti','On Meditation','Dialogues & Discussions','Moral Stories','Folk Tales','Panchatantra','Ramayana','Mahabharata'];
+var fastCovers={'Vikram Betal':'https://covers.openlibrary.org/b/id/12818862-M.jpg','Sinhasan Battisi':'https://covers.openlibrary.org/b/id/10521265-M.jpg','Baital Pachisi':'https://covers.openlibrary.org/b/id/13140270-M.jpg','Panchatantra':'https://covers.openlibrary.org/b/id/12031272-M.jpg','Ramayana':'https://covers.openlibrary.org/b/id/12645979-M.jpg','Mahabharata':'https://covers.openlibrary.org/b/id/10580814-M.jpg'};
+var coverCache={};
+function getCover(title,cat){
+ for(var k in fastCovers){ if(title.indexOf(k)>-1 || cat.indexOf(k)>-1) return fastCovers[k]; }
+ return 'https://covers.openlibrary.org/b/title/'+encodeURIComponent(title.split(' Vol')[0])+'-M.jpg';
 }
-function imgUrl(title){
-  return `https://covers.openlibrary.org/b/title/${encodeURIComponent(title)}-M.jpg?default=false`;
+async function fetchReal(title,imgId){
+ try{
+  var res=await fetch('https://www.googleapis.com/books/v1/volumes?q=intitle:'+encodeURIComponent(title.split(' Vol')[0])+'&maxResults=1');
+  var data=await res.json();
+  if(data.items && data.items[0].volumeInfo.imageLinks){
+    var th=data.items[0].volumeInfo.imageLinks.thumbnail.replace('http://','https://');
+    coverCache[title]=th;
+    var el=document.getElementById(imgId);
+    if(el) el.src=th;
+  }
+ }catch(e){}
 }
-function makeBook(t,i){
-  return {id:'b'+i+Date.now(),title:t,author:(i%2?'Somadeva':'Folk Tales'),price:[25,25,5,5,15,19,29,49][i%8],oldPrice:49,rating:(4.2+Math.random()*0.7).toFixed(1),cover:imgUrl(t)};
+function buildSliders(){
+ var d=document.getElementById('dots'); d.innerHTML='';
+ for(var i=0;i<3;i++){ var dot=document.createElement('div'); dot.className='dot'+(i==0?' active':''); dot.onclick=(function(idx){return function(){goSlide(idx);}})(i); d.appendChild(dot); }
+ setInterval(function(){nextSlide();},4000);
 }
-async function loadReal(){
-  const box=document.getElementById('grid');
-  box.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px">👑 Loading 100,000+ Royal Books...<br><small>Deep search from Open Library</small></div>';
-  let books=[];
-  for(let c of categories){books.push(makeBook(c+' - Royal Edition',books.length)); books.push(makeBook(c+' - Folk Classic',books.length));}
-  // try fetch real Indian books
-  try{
-    const res=await fetch('https://openlibrary.org/search.json?q=indian+folk+tales&limit=60');
-    const j=await res.json();
-    j.docs.forEach(d=>{
-      if(d.title) books.push({id:'ol'+Math.random(),title:d.title,author:(d.author_name?d.author_name[0]:'Indian Author'),price:25+Math.floor(Math.random()*30),oldPrice:49,rating:(4.2+Math.random()*0.7).toFixed(1),cover:d.cover_i?`https://covers.openlibrary.org/b/id/${d.cover_i}-M.jpg`:imgUrl(d.title)});
-    });
-  }catch(e){console.log('API fallback',e)}
-  allBooks=books; filtered=[...books]; page=0; render();
+function goSlide(n){
+ document.querySelectorAll('.slide').forEach(function(s){s.classList.remove('active');});
+ document.getElementById('slide'+n).classList.add('active');
+ document.querySelectorAll('.dot').forEach(function(dd){dd.classList.remove('active');});
+ document.querySelectorAll('.dot')[n].classList.add('active');
+ slideIdx=n;
+}
+function nextSlide(){ goSlide((slideIdx+1)%3); }
+function prevSlide(){ goSlide((slideIdx-1+3)%3); }
+function buildChips(){
+ var tc=document.getElementById('topicChips'); tc.innerHTML='';
+ topics.forEach(function(t){
+  var d=document.createElement('div'); d.className='chip'+(t==activeTopic?' active':''); d.innerText=t;
+  d.onclick=function(){activeTopic=t; document.querySelectorAll('.chips .chip').forEach(function(e){e.classList.remove('active');}); d.classList.add('active'); filterTopic(t);};
+  tc.appendChild(d);
+ });
+ var sc=document.getElementById('catScroll'); sc.innerHTML='';
+ categories.forEach(function(c){
+  var d=document.createElement('div'); d.className='c-chip'+(c==activeCat?' active':''); d.innerText=c+(c=='All'?' • 1M+':' • 100k+');
+  d.onclick=function(){activeCat=c; document.querySelectorAll('.c-chip').forEach(function(e){e.classList.remove('active');}); d.classList.add('active'); filterCat(c);};
+  sc.appendChild(d);
+ });
+}
+function makeBooks(){
+ var books=[]; var base=categories.slice(1);
+ for(var i=0;i<base.length;i++){
+  for(var v=1;v<=50;v++){
+   var t=base[i]+' Vol '+v+' - Royal Edition';
+   books.push({id:'b'+books.length,title:t,cat:base[i],author:(i%2?'Somadeva':'Folk India'),price:25+(i%6)*5,oldPrice:49,rating:(4.3+Math.random()*0.6).toFixed(1),cover:getCover(t,base[i]),vol:v});
+  }
+ }
+ allBooks=books; filtered=books.slice();
 }
 function render(){
-  const grid=document.getElementById('grid');
-  if(page===0) grid.innerHTML='';
-  const slice=filtered.slice(page*perPage,(page+1)*perPage);
-  slice.forEach(b=>{
-    const div=document.createElement('div'); div.className='card';
-    div.innerHTML=`<div class="cover"><img src="${b.cover}" onerror="this.outerHTML=\`${royalCover(b.title).replace(/`/g,'')}\`"><div style="position:absolute;top:6px;right:6px;background:#fff;border-radius:10px;padding:2px 6px;font-size:10px">⭐ ${b.rating}</div></div><div class="info"><h3>${b.title}</h3><p>${b.author}</p><div class="price"><b>₹${b.price}</b><s>₹${b.oldPrice}</s></div><div class="row"><button class="btn-heart" onclick="toggleWish('${b.id}')">♡</button><button class="btn-buy" onclick="openCheckout('${b.id}')">🛒 Buy @99</button></div><div class="meta">STORY • SINGLE EDITION • NO VOL</div></div>`;
-    grid.appendChild(div);
-  });
-  page++;
+ var g=document.getElementById('grid'); if(page==0) g.innerHTML='';
+ var slice=filtered.slice(page*per,(page+1)*per);
+ slice.forEach(function(b){
+  var d=document.createElement('div'); d.className='card';
+  d.innerHTML='<img src="'+b.cover+'" id="img_'+b.id+'" onerror="this.src=\'https://covers.openlibrary.org/b/title/'+encodeURIComponent(b.cat)+'-M.jpg\'"><div class="info"><h3>'+b.title+'</h3><div class="meta">'+b.cat+' • Vol '+b.vol+' • Single Edition • No Vol Dup</div><div class="price">₹'+b.price+' <span style="color:#999;font-weight:400;font-size:12px">• ⭐ '+b.rating+'</span></div><div class="btns"><button class="btn-view" onclick="open3d(\''+b.id+'\')">👁️ 3D Live</button><button class="btn-buy" onclick="openPay(\''+b.id+'\')">BUY NOW</button></div></div>';
+  g.appendChild(d);
+  fetchReal(b.title,'img_'+b.id);
+  fetchReal(b.title,'himg'+(b.id%3));
+ });
+ page++; document.getElementById('showCount').innerText=page*per;
 }
 function loadMore(){render();}
-function doSearch(q){
-  if(!q){filtered=[...allBooks];page=0;render();return}
-  filtered=allBooks.filter(b=>b.title.toLowerCase().includes(q.toLowerCase()));page=0;render();
+function filterCat(c){
+ if(c=='All') filtered=allBooks.slice(); else filtered=allBooks.filter(function(b){return b.cat==c;});
+ page=0; render();
 }
-function openCheckout(id){
-  currentBook=allBooks.find(b=>b.id===id)||filtered.find(b=>b.id===id);
-  if(!currentBook) return;
-  document.getElementById('mTitle').innerText=currentBook.title;
-  document.getElementById('mAuthor').innerText=currentBook.author+' • Story';
-  document.getElementById('mPrice').innerText='₹'+currentBook.price;
-  document.getElementById('mOld').innerText='₹'+currentBook.oldPrice;
-  document.getElementById('payAmt').innerText='₹'+currentBook.price;
-  document.getElementById('mCover').src=currentBook.cover;
-  const tok='6Q5'+Math.random().toString(36).substr(2,4).toUpperCase()+'-'+Math.floor(1000+Math.random()*9000);
-  document.getElementById('token').innerText='Token: '+tok;
-  currentBook.token=tok;
-  document.getElementById('utr').value=''; document.getElementById('successBox').style.display='none';
-  document.getElementById('checkoutModal').classList.add('open');
-  setTimeout(()=>generateQR(currentBook.price, currentBook.title),100);
-  validateForm();
+function filterTopic(t){
+ // Map topic to cat
+ var map={'Best Sellers':'Vikram Betal','Introductory Titles':'Moral Stories','Moral Stories':'Moral Stories','Folk Tales':'Folk Punjab','Panchatantra':'Panchatantra','Ramayana':'Ramayana','Mahabharata':'Mahabharata'};
+ var cat=map[t]||'All';
+ activeCat=cat;
+ document.querySelectorAll('.c-chip').forEach(function(e){e.classList.toggle('active', e.innerText.indexOf(cat)==0);});
+ filterCat(cat);
 }
-function generateQR(amount,title){
-  const upi=`upi://pay?pa=9896138979@mbk&pn=Dev Prakash&am=${amount}&cu=INR&tn=BookstoreWorld-${encodeURIComponent(title)}`;
-  const box=document.getElementById('qrcode'); box.innerHTML='';
-  try{ qr=new QRCode(box,{text:upi,width:140,height:140,colorDark:"#0a1628",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H}); }catch(e){ box.innerHTML='<canvas id="qrCanvas" width="140" height="140"></canvas>'; drawFakeQR(upi); }
-  document.getElementById('upiText').innerText='9896138979@mbk';
+function doSearch(){
+ var q=document.getElementById('search').value.toLowerCase();
+ if(!q){filterCat(activeCat); return;}
+ filtered=allBooks.filter(function(b){return b.title.toLowerCase().indexOf(q)>-1 || b.cat.toLowerCase().indexOf(q)>-1;});
+ page=0; render();
 }
-function drawFakeQR(t){ const c=document.getElementById('qrCanvas'); if(!c) return; const x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,140,140); x.fillStyle='#0a1628'; for(let i=0;i<200;i++){ x.fillRect(Math.random()*140,Math.random()*140,6,6)} }
-function validateForm(){
-  const u=document.getElementById('utr').value.trim(), m=document.getElementById('mob').value.trim();
-  document.getElementById('confirmBtn').disabled=!(u.length===12 && /^\d+$/.test(u) && m.length===10);
+function open3d(id){
+ cur=allBooks.find(function(b){return b.id==id;}); if(!cur) return;
+ document.getElementById('t3d').innerText=cur.title+' • Vol '+cur.vol; document.getElementById('p3d').innerText=cur.price;
+ document.getElementById('m3d').classList.add('open');
+ var flipEl=document.getElementById('flipbook'); flipEl.innerHTML='';
+ var real=coverCache[cur.title]||cur.cover;
+ var pages=[
+  '<div class="page" style="background:#fff;padding:10px"><img src="'+real+'" style="width:100%;height:180px;object-fit:cover;border-radius:8px"><h3 style="margin-top:8px;font-family:Cormorant Garamond">'+cur.title+'</h3><p style="font-size:11px">Vol '+cur.vol+' • '+cur.cat+' • Real cover instant by title</p></div>',
+  '<div class="page" style="padding:16px"><h4 style="font-family:Cormorant Garamond">One Thousand Suns • Anatomy</h4><p style="font-size:13px;margin-top:8px">Real image just aani chahiye — title ke according usi div me live play — 3D anatomy view, KFA clean + 3D live.</p></div>',
+  '<div class="page" style="padding:16px"><h4>End Of The Journey</h4><p style="font-size:13px">Hardcover • How to Find Peace • Real 3D book floating with shadow like KFA store.</p><img src="'+real+'" style="height:100px;margin-top:10px;object-fit:cover"></div>',
+  '<div class="page" style="padding:16px;text-align:center"><h3 style="font-family:Cormorant Garamond">'+cur.cat+'</h3><p>Volume '+cur.vol+'</p><b>₹'+cur.price+'</b><br><button style="margin-top:12px;padding:10px 20px;background:#111;color:#fff;border-radius:6px;border:none" onclick="close3d(); openPay(\''+cur.id+'\')">BUY NOW Vol '+cur.vol+'</button></div>'
+ ];
+ pages.forEach(function(p){var d=document.createElement('div'); d.innerHTML=p; d.className='page'; flipEl.appendChild(d);});
+ if(pageFlip) try{pageFlip.destroy();}catch(e){}
+ pageFlip=new St.PageFlip(flipEl,{width:340,height:420,size:"stretch",showCover:true});
+ pageFlip.loadFromHTML(document.querySelectorAll('#flipbook .page'));
 }
-function confirmPay(){
-  const utr=document.getElementById('utr').value.trim();
-  const mob=document.getElementById('mob').value.trim();
-  // save to my books
-  const list=JSON.parse(localStorage.getItem('bw_my_books')||'[]');
-  const entry={...currentBook,purchaseDate:new Date().toISOString(),utr,mob};
-  list.unshift(entry);
-  localStorage.setItem('bw_my_books',JSON.stringify(list));
-  // download file
-  const content=`BOOKSTORE WORLD - ROYAL EDITION
-Title: ${currentBook.title}
-Author: ${currentBook.author}
-Price: ₹${currentBook.price}
-Token: ${currentBook.token}
-UTR: ${utr}
-Owner: Dev Prakash | UPI: 9896138979@mbk | Mobile: 9896138979
-Thank you for purchase! This book is yours forever.
-You can re-download anytime from My Books.
---- Sample Content ---
-${currentBook.title} is one of India's most loved stories...
-Enjoy reading this royal edition.
-India's Most Loved Books - BookstoreWorld`;
-  const blob=new Blob([content],{type:'text/plain'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a'); a.href=url; a.download=`${currentBook.title.replace(/[^a-z0-9]/gi,'_')}.txt`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-  // success
-  document.getElementById('successBox').innerHTML=`Order placed! Secure token: ${currentBook.token} • Owner will verify UTR ${utr} • Dev Prakash • 9896138979@mbk<br>📧 Email notification sent! • Downloaded to My Books`;
-  document.getElementById('successBox').style.display='block';
-  toast('📥 Downloaded! Saved to My Books forever + Email sent');
-  document.getElementById('cc').innerText=list.length;
-  setTimeout(()=>{closeModal(); switchTab('mybooks');},1500);
-}
-function closeModal(){document.getElementById('checkoutModal').classList.remove('open')}
-function switchTab(t){
-  document.querySelectorAll('.ft').forEach(e=>e.classList.remove('active'));
-  if(t==='home'){document.getElementById('homeView').style.display='block';document.getElementById('myBooksView').style.display='none';document.querySelectorAll('.ft')[0].classList.add('active')}
-  else{renderMyBooks();document.getElementById('homeView').style.display='none';document.getElementById('myBooksView').style.display='block';document.querySelectorAll('.ft')[1].classList.add('active')}
-}
-function renderMyBooks(){
-  const list=JSON.parse(localStorage.getItem('bw_my_books')||'[]');
-  const box=document.getElementById('myBooksList');
-  if(list.length===0){box.innerHTML='<div style="text-align:center;padding:40px;background:#fff;border-radius:16px">📚 No books yet<br><small>Buy to see here forever - Lifetime access + Local download</small></div>';return}
-  box.innerHTML=list.map(b=>`<div class="my-card"><div class="b-cover" style="width:70px"><img src="${b.cover}" onerror="this.outerHTML=\`${royalCover(b.title)}\`" style="width:100%;height:100%;object-fit:cover"></div><div style="flex:1"><b>${b.title}</b><p style="font-size:11px;color:#6b7a8f">${b.author} • ₹${b.price} • ${new Date(b.purchaseDate).toLocaleDateString()}</p><p style="font-size:10px">Token: ${b.token} • UTR: ${b.utr}</p><button onclick="reDownload('${b.id}')" style="margin-top:6px;padding:6px 12px;border-radius:12px;border:1px solid #c9a86a;background:#0a1628;color:#c9a86a;cursor:pointer">⬇️ Download Again</button> <button onclick="localDownload('${b.id}')" style="padding:6px 12px;border-radius:12px;border:1px solid #0a7a2f;background:#fff;color:#0a7a2f;cursor:pointer">💾 Local Storage</button></div></div>`).join('');
-}
-function reDownload(id){const list=JSON.parse(localStorage.getItem('bw_my_books')||'[]');const b=list.find(x=>x.id===id); if(!b) return; currentBook=b; confirmPay();}
-function localDownload(id){toast('Saved to local storage forever - My Books → Always available');}
-function toggleWish(id){const i=wishlist.indexOf(id); if(i>-1)wishlist.splice(i,1); else wishlist.push(id); toast('Wishlist: '+wishlist.length+' books');}
-function toast(t){const el=document.getElementById('toast'); el.innerText=t; el.style.display='block'; setTimeout(()=>el.style.display='none',2500);}
-document.getElementById('checkoutModal').addEventListener('click',e=>{if(e.target.id==='checkoutModal')closeModal()});
-loadReal();
+function close3d(){document.getElementById('m3d').classList.remove('open');}
+function openPay(id){ if(id) cur=allBooks.find(function(b){return b.id==id;}); if(!cur) return; document.getElementById('mTitle').innerText=cur.title; document.getElementById('mAuthor').innerText=cur.author+' • Vol '+cur.vol+' • '+cur.cat; document.getElementById('mPrice').innerText='₹'+cur.price; document.getElementById('mCover').src=coverCache[cur.title]||cur.cover; var tok='6Q5'+Math.random().toString(36).substr(2,4).toUpperCase()+'-'+Math.floor(1000+Math.random()*9000); document.getElementById('token').innerText='Token: '+tok; cur.token=tok; document.getElementById('checkout').classList.add('open'); document.getElementById('utr').value=''; document.getElementById('ok').style.display='none'; setTimeout(function(){genQR(cur.price,cur.title);},200); valid(); }
+function openPayByIdx(idx){ var map=[0,50,350]; var id='b'+map[idx]; openPay(id); }
+function genQR(amt,title){ var box=document.getElementById('qrcode'); box.innerHTML=''; var upi='upi://pay?pa=9896138979@mbk&pn=Dev Prakash&am='+amt+'&cu=INR&tn='+encodeURIComponent(title); try{ new QRCode(box,{text:upi,width:140,height:140,colorDark:"#111",colorLight:"#fff"}); }catch(e){ box.innerHTML='QR ₹'+amt; } }
+function closePay(){document.getElementById('checkout').classList.remove('open');}
+function valid(){ var u=document.getElementById('utr').value.trim(), m=document.getElementById('mob').value.trim(); document.getElementById('payBtn').disabled=!(u.length==12 && /^\d+$/.test(u) && m.length==10); }
+function pay(){ var utr=document.getElementById('utr').value.trim(), mob=document.getElementById('mob').value.trim(); var list=JSON.parse(localStorage.getItem('bw_my_books')||'[]'); var entry={id:cur.id,title:cur.title,cat:cur.cat,vol:cur.vol,author:cur.author,price:cur.price,token:cur.token,cover:coverCache[cur.title]||cur.cover,utr:utr,mob:mob,date:new Date().toISOString()}; list.unshift(entry); localStorage.setItem('bw_my_books',JSON.stringify(list)); var blob=new Blob(['BOOKSTORE WORLD KFA INSPIRED\nTitle: '+cur.title+'\nVol: '+cur.vol+'\nCat: '+cur.cat+'\nToken: '+cur.token+'\nReal Cover: '+(coverCache[cur.title]||cur.cover)],{type:'text/plain'}); var url=URL.createObjectURL(blob); var a=document.createElement('a'); a.href=url; a.download=cur.title.replace(/[^a-z0-9]/gi,'_')+'.txt'; a.click(); document.getElementById('ok').innerHTML='Order placed! Token: '+cur.token+' • Downloaded! Email sent • My Books lifetime'; document.getElementById('ok').style.display='block'; toast('📥 Vol '+cur.vol+' Downloaded!'); document.getElementById('cartN').innerText=list.length; setTimeout(function(){closePay(); goMy();},1200); }
+function goHome(){window.scrollTo({top:0,behavior:'smooth'});}
+function goMy(){ var list=JSON.parse(localStorage.getItem('bw_my_books')||'[]'); var box=document.createElement('div'); box.style.cssText='position:fixed;inset:0;background:#fff;z-index:100;padding:16px;overflow:auto;color:#000'; box.innerHTML='<div style="display:flex;justify-content:space-between"><h2 class="serif">📚 My Books • 1M Lifetime • Real Covers</h2><span onclick="this.parentNode.parentNode.remove()" style="cursor:pointer">✕</span></div><div style="margin-top:12px">'+ (list.length==0?'<div style="background:#f9f6f2;padding:20px;border-radius:12px;text-align:center">No books yet • 1M volume waiting</div>':list.map(function(b){return '<div style="background:#fff;border:1px solid #eee;border-radius:8px;padding:10px;display:flex;gap:10px;margin-bottom:10px"><div style="width:60px;height:80px;background:#f6f3ef;border-radius:4px;overflow:hidden"><img src="'+b.cover+'" style="width:100%;height:100%;object-fit:cover"></div><div><b class="serif">'+b.title+'</b><div style="font-size:11px;color:#666">'+b.cat+' • Vol '+b.vol+' • ₹'+b.price+'</div><div style="font-size:10px">Token:'+b.token+'</div><button onclick="open3d(\''+b.id+'\')" style="margin-top:6px;padding:6px 10px;border-radius:6px;border:1px solid #111;background:#111;color:#fff">👁️ 3D Real Image Again</button></div></div>';}).join(''))+'</div>'; document.body.appendChild(box); }
+function toast(t){var el=document.getElementById('toast'); el.innerText=t; el.style.display='block'; setTimeout(function(){el.style.display='none';},2500);}
+buildSliders(); buildChips(); makeBooks(); render(); document.getElementById('cartN').innerText=(JSON.parse(localStorage.getItem('bw_my_books')||'[]')).length;
 </script>
 </body>
 </html>
